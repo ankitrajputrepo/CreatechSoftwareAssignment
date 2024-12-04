@@ -1,0 +1,41 @@
+﻿@model XXMountainBrigade.Models.Personnel
+@{
+    Layout = "Layout"; // This ensures the shared layout is used
+}
+<h2>Create Personnel</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="CoyId">Company</label>
+        <select asp-for="CoyId" asp-items="@(new SelectList(ViewBag.Companies, "CoyId", "CoyName"))" class="form-control" required>
+            <option value="">--Select--</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="RankId">Rank</label>
+        <select asp-for="RankId" asp-items="@(new SelectList(ViewBag.Ranks, "RankId", "RanName"))" class="form-control" required>
+            <option value="">--Select--</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="PersNo">Personnel No</label>
+        <input asp-for="PersNo" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="FirstName">First Name</label>
+        <input asp-for="FirstName" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="LastName">Last Name</label>
+        <input asp-for="LastName" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="DateOfBirth">Date of Birth</label>
+        <input asp-for="DateOfBirth" type="date" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="PermanentAddress">Permanent Address</label>
+        <input asp-for="PermanentAddress" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

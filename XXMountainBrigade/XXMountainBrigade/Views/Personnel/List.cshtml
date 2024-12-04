@@ -1,0 +1,50 @@
+﻿@model IEnumerable<XXMountainBrigade.Models.Personnel>
+@{
+    Layout = "Layout"; // This ensures the shared layout is used
+}
+<h2>Personnel List</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<div>
+    <a href="c:\users\ankit\onedrive\desktop\createch_assignment\createchsoftwareassignment\xxmountainbrigade\xxmountainbrigade\views\personnel\list.cshtml">c:\users\ankit\onedrive\desktop\createch_assignment\createchsoftwareassignment\xxmountainbrigade\xxmountainbrigade\views\personnel\list.cshtml</a>
+    <a asp-action="Logout" class="btn btn-danger">Logout</a>
+    <a asp-action="Create" class="btn btn-success">Add Personnel</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Personnel No</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Company</th>
+            <th>Rank</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.PersNo</td>
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
+                <td>@person.Company.CoyName</td>
+                <td>@person.Rank.RanName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@person.PersId" class="btn btn-warning">Edit</a>
+                    <form asp-action="Delete" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@person.PersId" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
