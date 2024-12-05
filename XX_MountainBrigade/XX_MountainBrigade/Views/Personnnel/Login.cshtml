@@ -1,0 +1,46 @@
+﻿@model XX_MountainBrigade.Models.LoginModel;
+
+@{
+    ViewData["Title"] = "Login";
+}
+@{
+    Layout = "_Layout"; // Assuming the layout file is named _Layout.cshtml
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="text-center">Login</h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Login", "Personnel", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken() <!-- Include CSRF Token for security -->
+                        <div class="form-group">
+                            <label for="username">Username (PersNo)</label>
+                            <input type="text" name="username" class="form-control" id="username" />
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" }) <!-- Display Validation Message -->
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="password">Password (PersNo)</label>
+                            <input type="password" name="password" class="form-control" id="password" />
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" }) <!-- Display Validation Message -->
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+                    }
+
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger mt-3">
+                            @TempData["ErrorMessage"]
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Personnel by Regiment and Company";
+}
+
+<h1>Personnel by Regiment and Company</h1>
+
+@foreach (var group in Model)
+{
+    <h3>@group.Regiment - @group.Company</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Personnel No</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in group.PersonnelList)
+            {
+                <tr>
+                    <td>@person.PersNo</td>
+                    <td>@person.FirstName</td>
+                    <td>@person.LastName</td>
+                    <td>@person.DateOfBirth.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

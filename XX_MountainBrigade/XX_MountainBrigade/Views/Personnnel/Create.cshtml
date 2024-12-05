@@ -1,0 +1,69 @@
+﻿@model XX_MountainBrigade.Models.Personnel
+
+@{
+    ViewData["Title"] = "Create Personnel";
+}
+
+<h1>Create Personnel</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="CoyId">Company</label>
+        <select asp-for="CoyId" class="form-control" asp-items="@(new SelectList(ViewBag.Companies, "CoyId", "CoyName"))">
+            <option value="">Select Company</option>
+        </select>
+        <span asp-validation-for="CoyId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TypeOfPersonnel">Type of Personnel</label>
+        <select asp-for="TypeOfPersonnel" class="form-control">
+            <option value="">Select Type</option>
+            @foreach (var type in ViewBag.PersonnelTypes)
+            {
+                <option value="@type">@type</option>
+            }
+        </select>
+        <span asp-validation-for="TypeOfPersonnel" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RankId">Rank</label>
+        <select asp-for="RankId" class="form-control" asp-items="@(new SelectList(ViewBag.Ranks, "RankId", "RankName"))">
+            <option value="">Select Rank</option>
+        </select>
+        <span asp-validation-for="RankId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PersNo">Personnel Number</label>
+        <input asp-for="PersNo" class="form-control" />
+        <span asp-validation-for="PersNo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateOfBirth">Date of Birth</label>
+        <input asp-for="DateOfBirth" type="date" class="form-control" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PermanentAddress">Permanent Address</label>
+        <input asp-for="PermanentAddress" class="form-control" />
+        <span asp-validation-for="PermanentAddress" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

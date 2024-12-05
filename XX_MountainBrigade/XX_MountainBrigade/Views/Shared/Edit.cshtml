@@ -1,0 +1,43 @@
+﻿@model XX_MountainBrigade.Models.Personnel
+
+@{
+    ViewData["Title"] = "Edit Personnel";
+}
+
+<h1>Edit Personnel</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="PersId" />
+
+    <!-- Company -->
+    <div class="form-group">
+        <label asp-for="CoyId" class="control-label">Company</label>
+        <select asp-for="CoyId" class="form-control" asp-items="@(new SelectList(ViewBag.Companies, "CoyId", "CoyName"))">
+            <option value="">Select Company</option>
+        </select>
+        <span asp-validation-for="CoyId" class="text-danger"></span>
+    </div>
+
+    <!-- Type of Personnel -->
+    <div class="form-group">
+        <label asp-for="TypeOfPersonnel" class="control-label">Type of Personnel</label>
+        <select asp-for="TypeOfPersonnel" class="form-control">
+            <option value="">Select Type</option>
+            <option value="JCO">JCO</option>
+            <option value="OR">OR</option>
+        </select>
+        <span asp-validation-for="TypeOfPersonnel" class="text-danger"></span>
+    </div>
+
+    <!-- Rank -->
+    <div class="form-group">
+        <label asp-for="RankId" class="control-label">Rank</label>
+        <select asp-for="RankId" class="form-control" asp-items="@(new SelectList(ViewBag.Ranks, "RankId", "RankName"))">
+            <option value="">Select Rank</option>
+        </select>
+        <span asp-validation-for="RankId" class="text-danger"></span>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>

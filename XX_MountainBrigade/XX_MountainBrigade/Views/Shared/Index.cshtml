@@ -1,0 +1,52 @@
+﻿@model IEnumerable<XX_MountainBrigade.Models.Personnel>
+
+@{
+    ViewData["Title"] = "Personnel List";
+}
+
+<h1>Personnel List</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Personnel Number</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Company</th>
+            <th>Rank</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var personnel in Model)
+        {
+            <tr>
+                <td>@personnel.PersNo</td>
+                <td>@personnel.FirstName</td>
+                <td>@personnel.LastName</td>
+                <td>@personnel.Company.CoyName</td>
+                <td>@personnel.Rank.RankName</td>
+                <td>
+                    <a href="@Url.Action("Edit", "PersonnelMvc", new { id = personnel.PersId })">Edit</a> |
+                    <form method="post" action="@Url.Action("DeleteConfirmed", "PersonnelMvc", new { id = personnel.PersId })" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
